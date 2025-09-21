@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Medha P — Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Enhanced CSS with refined styling and animations */
+    :root {
+      --primary: #4a6cf7;
+      --primary-dark: #3a56d4;
+      --secondary: #6c757d;
+      --dark: #1d2144;
+      --light: #f8f9ff;
+      --body-bg: #f5f8ff;
+      --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: var(--body-bg);
+      scroll-behavior: smooth;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header styles */
+    .site-header {
+      background: #fff;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: var(--transition);
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .brand h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      color: var(--dark);
+      background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .brand p {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 4px;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav a:not(:last-child):after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav a:hover:after {
+      width: 80%;
+      left: 10%;
+    }
+    
+    .nav a:hover {
+      color: var(--primary);
+    }
+    
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark);
+    }
+    
+    /* Hero section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 40px;
+      align-items: start;
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero:before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(74, 108, 247, 0.1), rgba(74, 108, 247, 0.05));
+      top: -250px;
+      right: -250px;
+      z-index: -1;
+    }
+    
+    .hero-left h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero-left p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      color: var(--secondary);
+      animation: fadeInUp 1s ease 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .cta-row {
+      animation: fadeInUp 1s ease 0.4s forwards;
+      opacity: 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-right: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+    }
+    
+    .btn:not(.ghost) {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn:not(.ghost):hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(74, 108, 247, 0.4);
+    }
+    
+    .btn.ghost {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn.ghost:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .hero-right {
+      animation: fadeInRight 1s ease 0.6s forwards;
+      opacity: 0;
+    }
+    
+    .contact-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .contact-card h3 {
+      margin-bottom: 20px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .contact-card h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+    
+    .contact-card p {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-card strong {
+      min-width: 70px;
+      display: inline-block;
+      color: var(--dark);
+    }
+    
+    .contact-card a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-card a:hover {
+      color: var(--primary-dark);
+    }
+    
+    .contact-card i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+    }
+    
+    /* Section styling */
+    section {
+      padding: 80px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    section h3 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    section h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    /* About section */
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      color: var(--secondary);
+    }
+    
+    /* Skills section */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    
+    .skill {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .skill:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill h4 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .skill p {
+      color: var(--secondary);
+    }
+    
+    /* Projects section */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-card:hover:before {
+      width: 100%;
+      opacity: 0.1;
+    }
+    
+    .project-card h4 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--dark);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .project-card p {
+      margin-bottom: 15px;
+      color: var(--secondary);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .project-card em {
+      color: var(--primary);
+      font-style: normal;
+      font-weight: 500;
+    }
+    
+    .project-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .project-card a:hover {
+      color: var(--primary-dark);
+      transform: translateX(5px);
+    }
+    
+    .project-card a i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+    
+    .project-card a:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* Certificates section */
+    .certs ul {
+      list-style: none;
+      columns: 2;
+      column-gap: 30px;
+    }
+    
+    .certs li {
+      margin-bottom: 15px;
+      padding-left: 25px;
+      position: relative;
+      break-inside: avoid;
+      color: var(--secondary);
+    }
+    
+    .certs li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    /* Contact section */
+    .contact p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: var(--secondary);
+    }
+    
+    .small-muted {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-top: 30px;
+    }
+    
+    /* Footer */
+    .site-footer {
+      background: var(--dark);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+    
+    .site-footer p {
+      margin: 0;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Responsive design */
+    @media (max-width: 992px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      
+      .hero-left h2 {
+        font-size: 2.5rem;
+      }
+      
+      .certs ul {
+        columns: 1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav a {
+        display: none;
+      }
+      
+      .menu-btn {
+        display: block;
+      }
+      
+      .nav.responsive {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        padding: 20px;
+        align-items: flex-start;
+      }
+      
+      .nav.responsive a {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .nav.responsive a:last-child {
+        border-bottom: none;
+      }
+      
+      .hero-left h2 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .btn {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        text-align: center;
+      }
+      
+      .cta-row {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .hero-left h2 {
+        font-size: 1.8rem;
+      }
+      
+      section h3 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>Medha P</h1>
+        <p class="muted">B.Tech (CSE) — Aspiring Software Engineer</p>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certificates</a>
+        <a href="#contact">Contact</a>
+        <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-left">
+        <h2>Hi — I'm Medha</h2>
+        <p>Recent B.Tech graduate in Computer Science and Engineering with experience in machine learning, data analysis and web development.</p>
+        <p class="cta-row">
+          <a class="btn" href="mailto:medhapandi@gmail.com"><i class="fas fa-envelope"></i> Email me</a>
+          <a class="btn ghost" href="Medha rs.pdf" download><i class="fas fa-download"></i> Download Resume</a>
+        </p>
+      </div>
+      <div class="hero-right">
+        <div class="card contact-card">
+          <h3>Contact</h3>
+          <p><strong><i class="fas fa-envelope"></i></strong> <a href="mailto:medhapandi@gmail.com">medhapandi@gmail.com</a></p>
+          <p><strong><i class="fas fa-map-marker-alt"></i></strong> Hosur, Tamil Nadu</p>
+          <p><strong><i class="fab fa-github"></i></strong> <a href="https://github.com/medhapandi" target="_blank">github.com/medhapandi</a></p>
+          <p><strong><i class="fab fa-linkedin"></i></strong> <a href="https://www.linkedin.com/in/medha-p-718219385" target="_blank">linkedin.com/in/medha-p-718219385</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="container about">
+      <h3>Objective</h3>
+      <p>Recent B.Tech graduate with a strong foundation in programming, problem solving and emerging technologies — seeking an entry-level role to apply technical skills and grow in software engineering.</p>
+    </section>
+
+    <section id="skills" class="container skills">
+      <h3>Skills</h3>
+      <div class="skill-grid">
+        <div class="skill">
+          <h4><i class="fas fa-code"></i> Languages</h4>
+          <p>Python, Java</p>
+        </div>
+        <div class="skill">
+          <h4><i class="fas fa-globe"></i> Web</h4>
+          <p>HTML, CSS, JavaScript</p>
+        </div>
+        <div class="skill">
+          <h4><i class="fas fa-database"></i> Databases</h4>
+          <p>MySQL</p>
+        </div>
+        <div class="skill">
+          <h4><i class="fas fa-tools"></i> Tools</h4>
+          <p>Git, GitHub, Power BI, Excel, Android Studio</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="container projects">
+      <h3>Selected Projects</h3>
+      <div class="project-grid">
+        <article class="project-card">
+          <h4>Bitcoin Prediction</h4>
+          <p><em>Machine Learning</em></p>
+          <p>Developed predictive models (Linear Regression, LSTM, ARIMA) to forecast Bitcoin prices using feature engineering (moving averages, RSI, volumes) and historical data.</p>
+          <p><a href="https://github.com/medhapandi" target="_blank">View code / repo <i class="fas fa-arrow-right"></i></a></p>
+        </article>
+
+        <article class="project-card">
+          <h4>Diwali Sales Analysis</h4>
+          <p><em>Exploratory Data Analysis</em></p>
+          <p>Performed EDA to identify customer purchase behaviour, cleaned datasets and visualized trends using Pandas, Matplotlib and Seaborn.</p>
+          <p><a href="https://github.com/medhapandi" target="_blank">View analysis <i class="fas fa-arrow-right"></i></a></p>
+        </article>
+
+        <article class="project-card">
+          <h4>Drowsiness Detection System</h4>
+          <p><em>Machine Learning (CNN)</em></p>
+          <p>Built a driver drowsiness detection prototype using CNN to detect eye state and trigger an alarm when drowsiness is detected.</p>
+          <p><a href="https://github.com/medhapandi" target="_blank">View project <i class="fas fa-arrow-right"></i></a></p>
+        </article>
+
+        <article class="project-card">
+          <h4>Arduino-Based Wireless Notice Board</h4>
+          <p><em>IoT</em></p>
+          <p>Created a Bluetooth-enabled notice board that displays messages sent from a remote device using a modem and Arduino.</p>
+          <p><a href="https://github.com/medhapandi" target="_blank">View project <i class="fas fa-arrow-right"></i></a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="certs" class="container certs">
+      <h3>Certificates</h3>
+      <ul>
+        <li>Coursera — Google Data Analytics</li>
+        <li>ICT & Capgemini — Data Analytics with Power BI</li>
+        <li>Cisco Networking Academy — Cybersecurity Essentials, Enterprise Networking, Security & Automation, Switching & Wireless Essentials, Intro to Data Science</li>
+        <li>Microsoft — Fabric & Data Analytics</li>
+        <li>Kaggle — Intro to Machine Learning</li>
+        <li>NPTEL — Data Mining, Internet of Things 4.0</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h3>Get in touch</h3>
+      <p>If you'd like to collaborate or want to see more work, email me at <a href="mailto:medhapandi@gmail.com">medhapandi@gmail.com</a> or visit my GitHub and LinkedIn.</p>
+      <p class="small-muted">This site was generated from the resume content provided.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Made with ❤️ — Medha P • Hosur, Tamil Nadu</p>
+    </div>
+  </footer>
+
+  <script>
+    // Enhanced JavaScript with animations and responsive menu
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('menu-btn');
+      const nav = document.getElementById('nav');
+      
+      // Mobile menu toggle
+      menuBtn.addEventListener('click', function() {
+        nav.classList.toggle('responsive');
+        menuBtn.textContent = nav.classList.contains('responsive') ? '✕' : '☰';
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && e.target !== menuBtn) {
+          nav.classList.remove('responsive');
+          menuBtn.textContent = '☰';
+        }
+      });
+      
+      // Scroll animations for sections
+      const sections = document.querySelectorAll('section');
+      
+      function checkScroll() {
+        sections.forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          const triggerHeight = window.innerHeight * 0.8;
+          
+          if (sectionTop < triggerHeight) {
+            section.classList.add('visible');
+          }
+        });
+      }
+      
+      // Initial check
+      checkScroll();
+      
+      // Check on scroll
+      window.addEventListener('scroll', checkScroll);
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            // Close mobile menu if open
+            nav.classList.remove('responsive');
+            menuBtn.textContent = '☰';
+            
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
